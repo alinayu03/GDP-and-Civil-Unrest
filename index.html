@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","violence.csv"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.18/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","violence.csv"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1473,6 +1473,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.18/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1518,11 +1520,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h2 id="introduction">Introduction</h2>
-<p>Does GDP per capita impact the likelihood of civil unrest in a country? In this study, I plan to evaluate the extent to which per capita GDP impacts the number of riots a country experiences. I expect countries with higher per capita GDP to experience less riots than countries without. Competition for scarce resources between divided groups as well as general unrest due to financial pressures may increase the likelihood of a riot. My independent variable is per capita GDP defined by the variable lrgdp80 which records the log of initial Income: Log of real per capita GDP for a given country in the decade of 1980. My dependent variable is riots80, the number of riots a country experienced in the decade of 1980, with riots defined as any violent demonstration or clash of more than 100 citizens. I will also run a multiple regression with pop80, a variable defined as the population of a country in the the decade of 1980. If I observe a higher frequency of riots for countries with lower per capita GDP, this would support my hypothesis. If I observe a lower frequency or same frequency, this would provide evidence against my hypothesis. When I run my regression of the count of riots on the per capita GDP variable, a negative, significant coefficient would indicate support for my hypothesis.</p>
+<p>Does GDP per capita impact the likelihood of civil unrest in a country? In this study, I plan to evaluate the extent to which per capita GDP impacts the number of riots a country experiences. I expect countries with higher per capita GDP to experience less riots than countries without. Competition for scarce resources between divided groups as well as general unrest due to financial pressures may increase the likelihood of a riot. In this study, I will also include analyses holding education levels and racial tension constant as possible confounding variables. Finally, I will evaluate the causality of the relationship between per capita GDP and civil unrest and the limitations of my study.</p>
 <h2 id="data">Data</h2>
+<p>The data I’m using in this study comes from a global-scale Political Violence Dataset, a cross-sectional study that records data on GDP, civil unrest, government overthrows, and more. My independent variable is per capita GDP defined by the variable lrgdp80 which records the log of real per capita GDP for a given country in 1980. My dependent variable is riots80, the number of riots a country experienced in 1980, with riots defined as any violent demonstration or clash of more than 100 citizens. I will also run a multiple regression with lschool80, a variable defined as the log of 1 + average years of school attainment in 1980. This regression will also include the variable racialt, defined as racial tension for 1984 with the values 1 (low tension) to 6 (high tension).</p>
+<p>If I observe a higher frequency of riots for countries with lower per capita GDP, this would support my hypothesis. If I observe a lower frequency or same frequency, this would provide evidence against my hypothesis. When I run my regression of the count of riots on the per capita GDP variable, a negative, significant coefficient would indicate support for my hypothesis.</p>
+<p>Below is a plot that summarizes the dependent variable:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/infer'>infer</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -1533,21 +1539,201 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span><span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='va'>unrest</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='va'>lrgdp80</span>, <span class='va'>riots80</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>lrgdp80</span>, y <span class='op'>=</span> <span class='va'>riots80</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Distribution of riots in 1980 by Per Capita GDP"</span>,</span>
+<span>                  x <span class='op'>=</span> <span class='st'>"Log of real per capita GDP for a given country"</span>,</span>
+<span>                  y <span class='op'>=</span> <span class='st'>"Number of Riots"</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>dist</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
+<h2 id="results">Results</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>reg</span> <span class='op'>&lt;-</span> <span class='va'>unrest</span> <span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>regplot</span> <span class='op'>&lt;-</span> <span class='va'>unrest</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='va'>lschool80</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>lrgdp80</span>, y <span class='op'>=</span> <span class='va'>riots80</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='va'>lm</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>riots80</span> <span class='op'>~</span> <span class='va'>lrgdp80</span>, data <span class='op'>=</span> <span class='va'>unrest</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>riots80</span> <span class='op'>~</span> <span class='va'>lrgdp80</span>, data <span class='op'>=</span> <span class='va'>unrest</span><span class='op'>)</span></span>
+<span><span class='va'>reg2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>riots80</span> <span class='op'>~</span> <span class='va'>lrgdp80</span> <span class='op'>+</span> <span class='va'>lschool80</span> <span class='op'>+</span> <span class='va'>racialt</span>, data <span class='op'>=</span> <span class='va'>unrest</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>reg</span>, <span class='va'>reg2</span><span class='op'>)</span>,</span>
+<span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+<th style="text-align:center;">
+Model 2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+1.299
+</td>
+<td style="text-align:center;">
+2.483
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.587
+</td>
+<td style="text-align:center;">
+s.e. = 2.925
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.415
+</td>
+<td style="text-align:center;">
+p = 0.399
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lrgdp80
+</td>
+<td style="text-align:center;">
+−0.092
+</td>
+<td style="text-align:center;">
+−0.151
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.202
+</td>
+<td style="text-align:center;">
+s.e. = 0.515
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.648
+</td>
+<td style="text-align:center;">
+p = 0.770
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lschool80
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.643
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.873
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+p = 0.464
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+racialt
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+−0.414
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.190
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+p = 0.033
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+109
+</td>
+<td style="text-align:center;">
+78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.002
+</td>
+<td style="text-align:center;">
+0.079
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+−0.007
+</td>
+<td style="text-align:center;">
+0.042
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>reg</span></span></code></pre>
 </div>
 <pre><code>
 Call:
@@ -1557,21 +1743,35 @@ Coefficients:
 (Intercept)      lrgdp80  
     1.29907     -0.09247  </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>riots80</span> <span class='op'>~</span> <span class='va'>lrgdp80</span> <span class='op'>+</span> <span class='va'>lschool80</span>, data <span class='op'>=</span> <span class='va'>unrest</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>reg2</span></span></code></pre>
 </div>
 <pre><code>
 Call:
-lm(formula = riots80 ~ lrgdp80 + lschool80, data = unrest)
+lm(formula = riots80 ~ lrgdp80 + lschool80 + racialt, data = unrest)
 
 Coefficients:
-(Intercept)      lrgdp80    lschool80  
-     3.9856      -0.5859       0.8685  </code></pre>
+(Intercept)      lrgdp80    lschool80      racialt  
+     2.4827      -0.1510       0.6433      -0.4138  </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>reg</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>regplot</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>The main linear regression model is trying to predict the number of riots (riots80) based on the natural logarithm of gross domestic product (lrgdp80) in 1980. The model suggests that there is a negative relationship between the number of riots and the natural logarithm of GDP, such that an increase in GDP is associated with a decrease in the number of riots. The intercept of the model (1.29907) suggests that when the natural logarithm of GDP is 0, the predicted number of riots is 1.29907. In this model, the intercept does not have a direct interpretation in terms of the real world, because it is unlikely that a country would have a GDP of 0. The coefficient for lrgdp80 (-0.09247) indicates that for every unit increase in the natural logarithm of GDP, the predicted number of riots decreases by 0.09247. This suggests a slightly negative relationship between log per capita GDP and riots.</p>
+<p>The intercept of the multiple regression model is 2.4827, which is the predicted value of the dependent variable (in this case, the number of riots) when all of the independent variables are equal to 0. This suggests that, when the other variables in the model are not taken into account, the model predicts that there will be about 2.48 riots. Again, this is probably not meaningful in the context of this study as it’s unlikely for a country to have 0 GDP. The coefficient for the lrgdp80 variable is -0.1510, which indicates that for every unit increase in log per capita GDP, the number of riots is predicted to decrease by 0.15, controlling for the other variables. The coefficient for the lschool80 variable is 0.6433, which indicates that for every unit increase in log years of schooling, the number of riots is predicted to increase by 0.64, controlling for the other variables. The coefficient for the racialt variable is -0.4138, which indicates that for every unit increase in racial tension, the number of riots is predicted to decrease by 0.41, controlling for the other variables.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>pvalue</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>reg</span><span class='op'>)</span><span class='op'>$</span><span class='va'>coefficients</span><span class='op'>[</span>, <span class='st'>"Pr(&gt;|t|)"</span><span class='op'>]</span></span>
+<span></span>
+<span><span class='va'>pvalue</span></span></code></pre>
+</div>
+<pre><code>(Intercept)     lrgdp80 
+  0.4147589   0.6476668 </code></pre>
+</div>
+<p>Based on these p-values, it appears that the relationship of the main linear regression model is not statistically significant. The p-value for the (Intercept) coefficient is 0.4147589, which is greater than the commonly-used significance level of 0.05. Similarly, the p-value for the lrgdp80 coefficient is 0.6476668, which is also greater than 0.05. Because at least one of the p-values is greater than 0.05, the model cannot be considered statistically significant at the 0.05 significance level. We can’t claim a causal relationship between log per capita GDP and civil unrest as measured by riots.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I did not find a causal relationship in my study. The linear regression model had a slightly negative correlation between log per capita GDP and riots, but this was not a statistically significant relationship. There were several limitations of my study. Firstly, I measured civil unrest in this study with number of riots a country experienced. With more comprehensive data, I can expand this definition to include other aspects of civil unrest. Similarly with more comprehensive data, I can control for many more variables that could confound a relationship like this. Other variables could include income inequality and governmental corruption. Moreover, this study is limited by its scope as well. I could improve this study by broadening the timeframe from 1 year to several decades to observe more trends in GDP and civil unrest.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
