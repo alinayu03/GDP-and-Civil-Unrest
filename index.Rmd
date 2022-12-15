@@ -1,7 +1,7 @@
 ---
 title: "GDP and Civil Unrest"
 author: "Alina Yu"
-description: "My final project"
+description: "The relationship between log per capita GDP and civil unrest as measured by frequency of riots"
 output:
   distill::distill_article:
     self_contained: false
