@@ -1,6 +1,6 @@
 ---
-title: "Gov 50 Final Project"
-author: "Your Name Here"
+title: "GDP and Civil Unrest"
+author: "Alina Yu"
 description: "My final project"
 output:
   distill::distill_article:
@@ -9,6 +9,37 @@ output:
 
 
 
-## Project thoughts
+## Introduction
 
-I am interested in exploring data related to...
+Does GDP per capita impact the likelihood of civil unrest in a country? In this study, I plan to evaluate the extent to which per capita GDP impacts the number of riots a country experiences. I expect countries with higher per capita GDP to experience less riots than countries without. Competition for scarce resources between divided groups as well as general unrest due to financial pressures may increase the likelihood of a riot. My independent variable is per capita GDP defined by the variable lrgdp80 which records the log of initial Income: Log of real per capita GDP for a given country in the decade of 1980. My dependent variable is riots80, the number of riots a country experienced in the decade of 1980, with riots defined as any violent demonstration or clash of more than 100 citizens. I will also run a multiple regression with pop80, a variable defined as the population of a country in the the decade of 1980. If I observe a higher frequency of riots for countries with lower per capita GDP, this would support my hypothesis. If I observe a lower frequency or same frequency, this would provide evidence against my hypothesis. When I run my regression of the count of riots on the per capita GDP variable, a negative, significant coefficient would indicate support for my hypothesis.
+
+## Data 
+
+```{r}
+library(tidyverse)
+```
+```{r}
+unrest <- read_csv("violence.csv") 
+
+
+dist <- unrest |>
+  drop_na(lrgdp80, riots80) |>
+  ggplot(mapping = aes(x = lrgdp80, y = riots80)) +
+  geom_point()
+
+dist
+```
+
+```{r}
+reg <- unrest |>
+  drop_na(lschool80) |>
+  ggplot(mapping = aes(x = lrgdp80, y = riots80)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+lm(riots80 ~ lrgdp80, data = unrest)
+lm(riots80 ~ lrgdp80 + lschool80, data = unrest)
+
+reg
+```
+
