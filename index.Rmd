@@ -49,7 +49,10 @@ regplot <- unrest |>
   drop_na(lschool80) |>
   ggplot(mapping = aes(x = lrgdp80, y = riots80)) +
   geom_point() +
-  geom_smooth(method = lm)
+  geom_smooth(method = lm) + 
+  labs(title = "Distribution of riots in 1980 by Per Capita GDP",
+                  x = "Log of real per capita GDP for a given country",
+                  y = "Number of Riots")
 
 reg <- lm(riots80 ~ lrgdp80, data = unrest)
 reg2 <- lm(riots80 ~ lrgdp80 + lschool80 + racialt, data = unrest)
